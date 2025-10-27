@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portafolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header">
     <div class="container header-row">
       <h1 class="logo">Portafolio</h1>
-      <nav class="nav">
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primary-nav" class="nav">
         <a href="#proyectos">Proyectos</a>
         <a href="#sobre-mi">Sobre mi</a>
         <a href="#contacto">Contacto</a>
@@ -25,7 +27,6 @@
   </header>
 
   <main class="container">
-    <!-- Hero -->
     <section class="card hero-card" id="hero">
       <div class="hero-content">
         <div class="hero-text">
@@ -36,11 +37,8 @@
       </div>
     </section>
 
-    <!-- Proyectos -->
-    <!-- Sección Proyectos (añadir data-full-src) -->
     <section class="card" id="proyectos">
       <h3>Proyectos</h3>
-      <!-- Sección Proyectos: corregir ruta del lightbox -->
       <div class="project-grid">
         <img src="./img/micama.jpg" alt="Proyecto 1" data-full-src="./img/micama.jpg" />
         <img src="./img/emav.JPG" alt="Proyecto 2" data-full-src="./img/emav.JPG" />
@@ -55,7 +53,6 @@
       </div>
     </section>
 
-    <!-- Sobre mi + Habilidades -->
     <section class="card" id="sobre-mi">
       <h3>Sobre mi</h3>
       <p class="about-text">
@@ -72,33 +69,29 @@
       </div>
     </section>
 
-    <!-- Contacto -->
-    <!-- Sección Contacto: usar tu endpoint de Formspree -->
     <section id="contacto" class="contact-section">
       <div class="contact-inner">
         <h3>Contacto</h3>
 
-        <!-- Dentro de la sección Contacto -->
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/meopeakl" method="POST" novalidate>
           <label for="email">EMAIL</label>
           <input id="email" name="email" type="email" placeholder="tuemail@ejemplo.com" required />
 
           <label for="mensaje">Mensaje</label>
-          <!-- Cambiamos el name a 'message' -->
           <textarea id="mensaje" name="message" rows="5" placeholder="Cuéntame tu idea..." required></textarea>
 
           <button type="submit" class="btn btn-dark">Enviar</button>
           <p class="form-status" id="formStatus" aria-live="polite"></p>
         </form>
 
-        <!-- Sección Mis Redes -->
         <div class="social">
           <h4>Mis Redes</h4>
           <div class="social-icons">
             <a class="icon" href="https://www.instagram.com/maria.navarromuno/" aria-label="Instagram">IG</a>
             <a class="icon" href="https://www.linkedin.com/in/maria-fernanda-navarro-mu%C3%B1oz-8a9116346/" aria-label="LinkedIn">in</a>
             <a class="icon" href="https://github.com/mariafer2108?tab=repositories" aria-label="GitHub">gh</a>
-          </div>
+            <a class="icon" href="img/cartapresentacion.docx" download="cartapresentacion.docx" aria-label="CartaPresentacion">cp</a>
+         </div>
         </div>
       </div>
 
@@ -110,11 +103,9 @@
 
   <script src="./script.js"></script>
 
-  <!-- Lightbox (poner justo antes de </body>) -->
-  <!-- Agrega esto al final del body -->
   <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Imagen ampliada">
     <button class="lightbox__close" aria-label="Cerrar">×</button>
-    <img class="lightbox__img" src="" alt="" />
+    <img class="lightbox__img" alt="" />
   </div>
 </body>
 </html>

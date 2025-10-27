@@ -1,6 +1,5 @@
-// Navegación suave en los enlaces internos
 document.addEventListener('DOMContentLoaded', () => {
-  // Navegación suave
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href');
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Lightbox
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.querySelector('.lightbox__img');
   const lightboxClose = document.querySelector('.lightbox__close');
@@ -30,11 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!lightbox || !lightboxImg) return;
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
-    lightboxImg.src = '';
+    lightboxImg.removeAttribute('src'); 
+    lightboxImg.alt = '';
     document.body.style.overflow = '';
   }
 
-  // Delegación de eventos: clic en imágenes dentro de #proyectos
+ 
   const proyectos = document.getElementById('proyectos');
   proyectos?.addEventListener('click', (e) => {
     const img = e.target.closest('img');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openLightbox(full, img.alt);
   });
 
-  // Cerrar: botón, clic fuera y Escape
+
   lightboxClose?.addEventListener('click', closeLightbox);
   lightbox?.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -53,12 +53,61 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLightbox();
     }
   });
+
+
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.getElementById('primary-nav');
+
+  if (navToggle && primaryNav) {
+    function closeNav() {
+      navToggle.setAttribute('aria-expanded', 'false');
+      primaryNav.classList.remove('open');
+      navToggle.classList.remove('open');
+    }
+
+    function openNav() {
+      navToggle.setAttribute('aria-expanded', 'true');
+      primaryNav.classList.add('open');
+      navToggle.classList.add('open');
+    }
+
+    function toggleNav() {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      if (expanded) closeNav(); else openNav();
+    }
+
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleNav();
+    });
+
+    // Cerrar al hacer clic en un enlace
+    primaryNav.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => closeNav())
+    );
+
+    // Cerrar al pulsar Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeNav();
+    });
+
+    // Cerrar al clicar fuera del menú
+    document.addEventListener('click', (e) => {
+      if (!primaryNav.contains(e.target) && !navToggle.contains(e.target)) {
+        closeNav();
+      }
+    });
+  }
+
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
 });
 
-// Simulación simple de envío del formulario (sin backend)
-// Envío real del formulario con Formspree (sin backend propio)
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Envío real del formulario con Formspree
+
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('formStatus');
 
