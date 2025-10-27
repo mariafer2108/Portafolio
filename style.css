@@ -71,23 +71,115 @@ body {
 
 .site-header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
-
   background: var(--card);
   backdrop-filter: saturate(180%) blur(8px);
   -webkit-backdrop-filter: saturate(180%) blur(8px);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  min-height: var(--header-h);
 }
-.header-row { display: flex; align-items: center; padding: 10px 20px; }
-.logo { margin: 10px; font-size: 26px; font-weight: 700; color: var(--text-1); }
-.nav { margin-left: auto; display: flex; gap: 16px; }
+
+/* fila del header: logo | nav centrado | toggle (derecha en móvil) */
+.header-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+/* logo */
+.logo {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Nav: por defecto oculto en móvil y desplegable */
+.nav {
+  display: none;
+  gap: 12px;
+  flex-direction: column;
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 2px solid var(--stroke);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+  z-index: 1050;
+}
+
+/* clase que controla apertura desde JS */
+.nav.open,
+.nav.is-open {
+  display: flex;
+}
+
+/* enlaces del nav */
 .nav a {
-  color: var(--text-2); font-weight: 500; font-size: 14px; text-decoration: none;
+  color: var(--text-2);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 6px;
 }
 .nav a:hover { color: var(--accent); }
+
+/* Botón hamburguesa (visible en móvil) */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #111;
+  margin: 3px 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-toggle.open span:nth-child(1){ transform: translateY(5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity: 0; }
+.nav-toggle.open span:nth-child(3){ transform: translateY(-5px) rotate(-45deg); }
+
+/* Desktop: nav siempre visible, centrado; toggle oculto */
+@media (min-width: 900px) {
+  .nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    justify-content: center;
+    gap: 20px;
+  }
+  .nav a { padding: 6px 8px; font-size: 14px; }
+  .nav-toggle { display: none !important; }
+  .header-row { padding: 12px 32px; }
+}
+
+/* pequeño ajuste en pantallas medias */
+@media (min-width: 640px) and (max-width: 899px) {
+  .header-row { padding: 10px 20px; }
+  .nav { right: 0; left: 0; }
+}
+/* --- fin bloque header corregido --- */
 
 
 .card {
@@ -576,3 +668,83 @@ body {
     .contact-form textarea { min-height: 100px; }
   }
 }
+
+/* --- Correcciones del layout (override final) --- */
+
+/* Asegura un container centrado y con ancho máximo */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Header: layout consistente usando grid y colocación explícita */
+.header-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+/* Forzar posiciones independientemente del orden HTML */
+.logo {
+  grid-column: 1;
+  justify-self: start;
+  margin: 0;
+}
+.nav {
+  grid-column: 2;
+  justify-self: center;
+  display: none; /* mobile: oculto por defecto */
+  gap: 12px;
+}
+.nav-toggle {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+}
+
+/* Mobile: menú desplegable completo bajo el header */
+.nav.is-open,
+.nav.open { display: flex; flex-direction: column; position: fixed; top: var(--header-h); left: 0; right: 0; padding: 12px 16px; background: var(--card); z-index: 1050; }
+
+/* Desktop: nav siempre horizontal y centrado, toggle oculto */
+@media (min-width: 900px) {
+  .nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    justify-content: center;
+    gap: 20px;
+    background: transparent;
+  }
+  .nav a { padding: 6px 8px; font-size: 14px; }
+  .nav-toggle { display: none !important; }
+  .header-row { padding: 12px 32px; }
+  /* Asegura que el nav no aparezca como columna a la izquierda */
+  .site-header .nav { top: auto; left: auto; right: auto; }
+}
+
+/* Layout principal de secciones: alineadas arriba en desktop */
+@media (min-width: 900px) {
+  main.container { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+  .hero-card { flex: 0 0 100%; max-width: 100%; }
+  #proyectos, #sobre-mi, #contacto {
+    flex: 1 1 calc(33.333% - 16px);
+    min-width: 280px;
+    align-self: flex-start;
+    margin: 0;
+  }
+  /* Si alguna .card añade margen superior indeseado */
+  #proyectos.card, #sobre-mi.card, #contacto.card { margin-top: 0; }
+}
+
+/* Pequeño ajuste para evitar solapamientos por header fijo */
+#proyectos, #sobre-mi, #contacto { scroll-margin-top: calc(var(--header-h) + 8px); }
+/* --- fin override --- */
