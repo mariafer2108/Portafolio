@@ -1,0 +1,206 @@
+:root {
+  --bg-1: #EFE7FF;
+  --bg-2: #E7E0FF;
+  --bg-3: #DCD6FF;
+  --card: #FFFFFF;
+  --stroke: #E6DAFF;
+
+  --text-1: #2D2352;
+  --text-2: #5C4E8F;
+
+  --accent: #7A5AFF;
+  --accent-2: #C2AEFF;
+  --accent-3: #9A7DFF;
+
+  --shadow: 0 8px 18px rgba(122, 90, 255, 0.12);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text-1);
+  background:
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 40%, var(--bg-3) 100%);
+}
+.project-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+/* Layout */
+/* Contenedor principal: ahora fluido a ancho completo */
+.container {
+  width: 100%;
+  max-width: none;    /* antes: 420px */
+  margin: 0;          /* antes: 0 auto */
+  padding: 0 16px;    /* pon 0 si quieres borde a borde */
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.4);
+  border-bottom: 1px solid var(--stroke);
+}
+.header-row { display: flex; align-items: center; padding: 10px 0; }
+.logo { margin: 0; font-size: 26px; font-weight: 700; color: var(--text-1); }
+.nav { margin-left: auto; display: flex; gap: 16px; }
+.nav a {
+  color: var(--text-2); font-weight: 500; font-size: 14px; text-decoration: none;
+}
+.nav a:hover { color: var(--accent); }
+
+/* Card base */
+.card {
+  background: var(--card);
+  border: 2px solid var(--stroke);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin: 16px 0;
+}
+.card h3 { margin: 0 0 10px; }
+
+/* Hero */
+.hero-content { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hero-text h2 { margin: 0; font-size: 18px; line-height: 1.2; }
+.hero-text .strong { font-weight: 700; font-size: 20px; }
+.hero-text p { margin: 8px 0 0; color: var(--text-2); font-size: 12px; }
+.avatar {
+  width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--accent-2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Proyectos */
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.project-grid img {
+  width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  border-radius: 8px; border: 2px solid var(--stroke);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.project-note { margin-top: 12px; }
+.project-note p {
+  font-size: 14px;          /* más grande */
+  font-weight: 700;         /* negrita */
+  color: var(--text-1);     /* texto principal */
+  background: linear-gradient(90deg, var(--accent-2) 0%, #EFE7FF 100%);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--stroke);
+  box-shadow: var(--shadow);
+}
+.project-note p::before {
+  content: "★";
+  color: var(--accent);
+  margin-right: 8px;
+  font-size: 16px;
+}
+.project-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.project-row img { width: 100%; border-radius: 8px; border: 2px solid var(--stroke); }
+
+/* CTA */
+.cta-row { margin-top: 14px; display: flex; justify-content: center; }
+.btn {
+  display: inline-block; padding: 10px 18px; border-radius: 999px;
+  color: #fff; font-weight: 600; text-decoration: none;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-3) 100%);
+  box-shadow: 0 8px 18px rgba(122, 90, 255, 0.25);
+}
+.btn:hover { filter: brightness(1.05); }
+
+/* Sobre mi + Habilidades */
+.about-text { color: var(--text-2); font-size: 13px; }
+.skills-title { margin: 14px 0 8px; font-size: 14px; color: var(--text-2); }
+.skills { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge {
+  display: inline-block; padding: 6px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; color: var(--text-1);
+  background: #fff; border: 2px solid var(--stroke); box-shadow: var(--shadow);
+}
+
+/* Contacto (fondo lila) */
+.contact-section {
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  margin: 16px 0 0; padding: 24px 0 32px;
+}
+/* Contenedor interno de Contacto: también a ancho completo */
+.contact-inner {
+  width: 100%;
+  max-width: none;    /* antes: 420px */
+  margin: 0;          /* antes: 0 auto */
+  padding: 0 16px;    /* pon 0 si quieres borde a borde */
+}
+.contact-inner h3 { margin: 0 0 14px; }
+
+.contact-form { display: grid; gap: 8px; }
+.contact-form label { font-size: 12px; color: var(--text-2); }
+.contact-form input, .contact-form textarea {
+  width: 100%; font-family: inherit; font-size: 14px;
+  border-radius: 8px; border: 2px solid var(--stroke);
+  background: #fff; padding: 8px 10px;
+}
+.btn-dark {
+  background: var(--text-1);
+  box-shadow: none;
+}
+.form-status { margin-top: 6px; font-size: 12px; color: var(--text-2); }
+
+/* Redes */
+.social { margin-top: 12px; }
+.social h4 { margin: 0 0 8px; color: var(--text-2); font-size: 14px; }
+.social-icons { display: flex; gap: 8px; }
+.icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-2); color: #fff; font-weight: 700; text-decoration: none;
+  border: 2px solid var(--stroke);
+}
+
+/* Footer */
+.site-footer { text-align: center; margin-top: 18px; color: var(--text-2); }
+
+/* Responsive pequeños ajustes */
+@media (max-width: 480px) {
+  .nav { gap: 12px; }
+}
+
+/* Indica que se pueden ampliar */
+.project-grid img,
+.project-row img {
+  cursor: zoom-in;
+}
+
+/* Lightbox (modal) */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox__img {
+  max-width: 95vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  border: 3px solid var(--stroke);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  background: #fff;
+}
+.lightbox__close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--stroke);
+  background: #ffffffdd;
+  color: var(--text-1);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.lightbox__close:hover { filter: brightness(1.05); }

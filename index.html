@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="logo">Portafolio</h1>
+      <nav class="nav">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#sobre-mi">Sobre mi</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="card hero-card" id="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2>¡Hola! Soy<br /><span class="strong">Maria Fernanda<br />Navarro</span></h2>
+          <p>Diseñadora y desarrolladora web, apasionada por crear interfaces claras, elegantes.</p>
+        </div>
+        <img class="avatar" src="./img/perfil.png" alt="Foto de perfil" />
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <!-- Sección Proyectos (añadir data-full-src) -->
+    <section class="card" id="proyectos">
+      <h3>Proyectos</h3>
+      <!-- Sección Proyectos: corregir ruta del lightbox -->
+      <div class="project-grid">
+        <img src="./img/micama.jpg" alt="Proyecto 1" data-full-src="./img/micama.jpg" />
+        <img src="./img/emav.JPG" alt="Proyecto 2" data-full-src="./img/emav.JPG" />
+        <img src="./img/gatitos.JPG" alt="Proyecto 3" data-full-src="./img/gatitos.JPG" />
+      </div>
+    
+      <div class="project-note">
+        <p>Tambien forme parte del diseño de este proyecto con wordpress:</p>
+        <div class="project-row">
+          <img src="./img/alma.JPG" alt="Proyecto Wordpress" data-full-src="./img/alma.JPG" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mi + Habilidades -->
+    <section class="card" id="sobre-mi">
+      <h3>Sobre mi</h3>
+      <p class="about-text">
+        Me especializo en diseño UI y desarrollo front‑end. Me gusta crear interfaces limpias,
+        con buena tipografía y colores suaves, cuidando accesibilidad y performance.
+      </p>
+
+      <h4 class="skills-title">Habilidades</h4>
+      <div class="skills">
+        <span class="badge">Figma</span>
+        <span class="badge">HTML</span>
+        <span class="badge">CSS</span>
+        <span class="badge">Javascript</span>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <!-- Sección Contacto: usar tu endpoint de Formspree -->
+    <section id="contacto" class="contact-section">
+      <div class="contact-inner">
+        <h3>Contacto</h3>
+
+        <!-- Dentro de la sección Contacto -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/meopeakl" method="POST" novalidate>
+          <label for="email">EMAIL</label>
+          <input id="email" name="email" type="email" placeholder="tuemail@ejemplo.com" required />
+
+          <label for="mensaje">Mensaje</label>
+          <!-- Cambiamos el name a 'message' -->
+          <textarea id="mensaje" name="message" rows="5" placeholder="Cuéntame tu idea..." required></textarea>
+
+          <button type="submit" class="btn btn-dark">Enviar</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+
+        <!-- Sección Mis Redes -->
+        <div class="social">
+          <h4>Mis Redes</h4>
+          <div class="social-icons">
+            <a class="icon" href="https://www.instagram.com/maria.navarromuno/" aria-label="Instagram">IG</a>
+            <a class="icon" href="https://www.linkedin.com/in/maria-fernanda-navarro-mu%C3%B1oz-8a9116346/" aria-label="LinkedIn">in</a>
+            <a class="icon" href="https://github.com/mariafer2108?tab=repositories" aria-label="GitHub">gh</a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <small>copyright © 2025</small>
+      </footer>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+
+  <!-- Lightbox (poner justo antes de </body>) -->
+  <!-- Agrega esto al final del body -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Imagen ampliada">
+    <button class="lightbox__close" aria-label="Cerrar">×</button>
+    <img class="lightbox__img" src="" alt="" />
+  </div>
+</body>
+</html>
