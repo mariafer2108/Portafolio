@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.querySelector('.lightbox__img');
   const lightboxClose = document.querySelector('.lightbox__close');
+  const MICAMA_LINK = 'https://webmicama.vercel.app/index.html';
+  const EMAV_LINK = 'https://emavchile.com/';
+  const GATITOS_LINK = 'https://gatitos-glotones.vercel.app/';
+  const ALMA_LINK = 'https://www.almasilvestre.cl/';
 
   function openLightbox(src, alt = '') {
     if (!lightbox || !lightboxImg) return;
@@ -23,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    // Reset de zoom/estilos por cada apertura
+    lightboxImg.classList.remove('zoomed');
+    lightboxImg.style.width = '';
+    lightboxImg.style.height = '';
+    lightboxImg.style.cursor = 'zoom-in';
   }
 
   function closeLightbox() {
@@ -32,6 +41,70 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxImg.removeAttribute('src'); 
     lightboxImg.alt = '';
     document.body.style.overflow = '';
+    lightboxImg.classList.remove('zoomed');
+  }
+
+  function toggleZoom(e) {
+    const img = lightboxImg;
+    if (!img) return;
+
+    const willZoom = !img.classList.contains('zoomed');
+
+    if (willZoom) {
+        const srcLower = img.src.toLowerCase();
+        const isMiCama = srcLower.includes('micama.jpg');
+
+        // micama 1.5x, otras suben un poco más a 2.0x
+        const ZOOM_FACTOR = isMiCama ? 1.5 : 2.0;
+
+        const rect = img.getBoundingClientRect();
+        const desiredWidth = rect.width * ZOOM_FACTOR;
+        const naturalWidth = img.naturalWidth;
+        const targetWidth = Math.min(desiredWidth, naturalWidth);
+
+        img.classList.add('zoomed');
+        img.style.width = `${targetWidth}px`;
+        img.style.height = 'auto';
+        img.style.cursor = 'move';
+    } else {
+        img.classList.remove('zoomed');
+        img.style.width = '';
+        img.style.height = '';
+        img.style.cursor = 'zoom-in';
+    }
+
+    e.stopPropagation();
+  }
+
+  function onLightboxImgClick(e) {
+    const img = lightboxImg;
+    if (!img) return;
+    const srcLower = img.src.toLowerCase();
+    const isMiCama = srcLower.includes('micama.jpg');
+    const isEmav = srcLower.includes('emav.jpg');
+    const isGatitos = srcLower.includes('gatitos.jpg');
+    const isAlma = srcLower.includes('alma.jpg');
+    if (isMiCama) {
+      window.open(MICAMA_LINK, '_blank', 'noopener');
+      e.stopPropagation();
+      return;
+    }
+    if (isEmav) {
+      window.open(EMAV_LINK, '_blank', 'noopener');
+      e.stopPropagation();
+      return;
+    }
+    if (isGatitos) {
+      window.open(GATITOS_LINK, '_blank', 'noopener');
+      e.stopPropagation();
+      return;
+    }
+    if (isAlma) {
+      window.open(ALMA_LINK, '_blank', 'noopener');
+      e.stopPropagation();
+      return;
+    }
+    toggleZoom(e);
   }
 
  
@@ -48,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
   lightbox?.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
   });
+  
+  lightboxImg?.addEventListener('click', onLightboxImgClick);
+  
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightbox?.classList.contains('open')) {
       closeLightbox();
@@ -61,14 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navToggle && primaryNav) {
     function closeNav() {
       navToggle.setAttribute('aria-expanded', 'false');
-      primaryNav.classList.remove('open');
-      navToggle.classList.remove('open');
+      primaryNav.classList.remove('is-open');
+      navToggle.classList.remove('is-open');
     }
 
     function openNav() {
       navToggle.setAttribute('aria-expanded', 'true');
-      primaryNav.classList.add('open');
-      navToggle.classList.add('open');
+      primaryNav.classList.add('is-open');
+      navToggle.classList.add('is-open');
     }
 
     function toggleNav() {
