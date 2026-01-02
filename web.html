@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Diseño Web - Portafolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="logo">Portafolio</h1>
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+        <svg class="icon-bars" width="28" height="22" viewBox="0 0 28 22" aria-hidden="true" focusable="false">
+          <rect x="1" y="1"  width="26" height="4"  rx="2"></rect>
+          <rect x="1" y="9"  width="26" height="4"  rx="2"></rect>
+          <rect x="1" y="17" width="26" height="4"  rx="2"></rect>
+        </svg>
+      </button>
+      <nav id="primary-nav" class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#sobre-mi">Sobre mi</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="proyectos">
+      <h3>Proyectos Web</h3>
+      <p style="color: var(--text-2); margin-bottom: 20px;">Colección de páginas web y desarrollos front-end.</p>
+
+      <div class="project-grid">
+        <img src="./img/micama.jpg" alt="Proyecto 1" data-full-src="./img/micama.jpg" data-link="https://webmicama.vercel.app/index.html" />
+        <img src="./img/emav.JPG" alt="Proyecto 2" data-full-src="./img/emav.JPG" data-link="https://emavchile.com/" />
+        <img src="./img/gatitos.JPG" alt="Proyecto 3" data-full-src="./img/gatitos.JPG" data-link="https://gatitos-glotones.vercel.app/" />
+      </div>
+    
+      <div class="project-note">
+        <p>Tambien forme parte del diseño de este proyecto con wordpress:</p>
+        <div class="project-row">
+          <img src="./img/alma.JPG" alt="Proyecto Wordpress" data-full-src="./img/alma.JPG" data-link="https://www.almasilvestre.cl/" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="contacto">
+      <h3>Contacto</h3>
+      <p style="margin-bottom: 20px;">¿Tienes algún proyecto en mente? ¡Escríbeme!</p>
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Enviar Mensaje</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>copyright © 2025</small>
+  </footer>
+
+  <script src="./script.js"></script>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Imagen ampliada">
+    <button class="lightbox__close" aria-label="Cerrar">×</button>
+    <img class="lightbox__img" alt="" />
+  </div>
+</body>
+</html>

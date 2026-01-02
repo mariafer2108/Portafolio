@@ -20,10 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const GATITOS_LINK = 'https://gatitos-glotones.vercel.app/';
   const ALMA_LINK = 'https://www.almasilvestre.cl/';
 
-  function openLightbox(src, alt = '') {
+  function openLightbox(src, alt = '', link) {
     if (!lightbox || !lightboxImg) return;
     lightboxImg.src = src;
     lightboxImg.alt = alt;
+    if (link) {
+      lightboxImg.dataset.link = link;
+    } else {
+      delete lightboxImg.dataset.link;
+    }
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -40,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.setAttribute('aria-hidden', 'true');
     lightboxImg.removeAttribute('src'); 
     lightboxImg.alt = '';
+    delete lightboxImg.dataset.link;
     document.body.style.overflow = '';
     lightboxImg.classList.remove('zoomed');
   }
@@ -79,28 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function onLightboxImgClick(e) {
     const img = lightboxImg;
     if (!img) return;
-    const srcLower = img.src.toLowerCase();
-    const isMiCama = srcLower.includes('micama.jpg');
-    const isEmav = srcLower.includes('emav.jpg');
-    const isGatitos = srcLower.includes('gatitos.jpg');
-    const isAlma = srcLower.includes('alma.jpg');
-    if (isMiCama) {
-      window.open(MICAMA_LINK, '_blank', 'noopener');
-      e.stopPropagation();
-      return;
-    }
-    if (isEmav) {
-      window.open(EMAV_LINK, '_blank', 'noopener');
-      e.stopPropagation();
-      return;
-    }
-    if (isGatitos) {
-      window.open(GATITOS_LINK, '_blank', 'noopener');
-      e.stopPropagation();
-      return;
-    }
-    if (isAlma) {
-      window.open(ALMA_LINK, '_blank', 'noopener');
+    const link = img.dataset.link;
+    if (link) {
+      window.open(link, '_blank', 'noopener');
       e.stopPropagation();
       return;
     }
@@ -113,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = e.target.closest('img');
     if (!img) return;
     const full = img.dataset.fullSrc || img.src;
-    openLightbox(full, img.alt);
+    const link = img.dataset.link || '';
+    openLightbox(full, img.alt, link);
   });
 
 

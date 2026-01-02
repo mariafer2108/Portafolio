@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Selecciona una opción</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+      body {
+          background: linear-gradient(135deg, #F3E8FF 0%, #D8B4FE 100%);
+          min-height: 100vh;
+      }
+      .selection-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 140px);
+        gap: 50px;
+        flex-wrap: wrap;
+        padding: 40px;
+      }
+      .globo {
+        width: 260px;
+        height: 260px;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        
+        font-family: 'Berkshire Swash', cursive;
+        color: #5B2C96;
+        font-size: 2rem;
+        line-height: 1.2;
+        
+        box-shadow: 
+            0 15px 35px rgba(109, 40, 217, 0.2),
+            inset 0 5px 15px rgba(255, 255, 255, 0.5);
+            
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: float 5s ease-in-out infinite;
+        padding: 20px;
+        position: relative;
+      }
+      
+      /* Decorative ring inside */
+      .globo::after {
+          content: '';
+          position: absolute;
+          top: 15px; left: 15px; right: 15px; bottom: 15px;
+          border: 1px dashed rgba(139, 92, 246, 0.4);
+          border-radius: 50%;
+          transition: all 0.4s ease;
+      }
+
+      .globo:hover {
+        transform: translateY(-15px) scale(1.05) !important;
+        background: #fff;
+        box-shadow: 0 20px 50px rgba(109, 40, 217, 0.3);
+        z-index: 10;
+      }
+      
+      .globo:hover::after {
+          border-color: var(--accent);
+          transform: rotate(180deg);
+      }
+
+      /* Specific colors/delays */
+      .globo:nth-child(1) {
+          animation-delay: 0s;
+      }
+      .globo:nth-child(2) {
+          animation-delay: 2.5s;
+      }
+      .globo:nth-child(3) {
+          animation-delay: 1.2s;
+          color: #be185d; /* Pink tone for Certificates */
+      }
+      .globo:nth-child(3):hover {
+          color: #db2777;
+          box-shadow: 0 20px 50px rgba(219, 39, 119, 0.3);
+      }
+      .globo:nth-child(3)::after {
+          border-color: rgba(219, 39, 119, 0.4);
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .globo {
+          width: 180px;
+          height: 180px;
+          font-size: 1.4rem;
+        }
+      }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="logo">Portafolio</h1>
+      <!-- Botón hamburguesa -->
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+        <svg class="icon-bars" width="28" height="22" viewBox="0 0 28 22" aria-hidden="true" focusable="false">
+          <rect x="1" y="1"  width="26" height="4"  rx="2"></rect>
+          <rect x="1" y="9"  width="26" height="4"  rx="2"></rect>
+          <rect x="1" y="17" width="26" height="4"  rx="2"></rect>
+        </svg>
+      </button>
+      <nav id="primary-nav" class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#sobre-mi">Sobre mi</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="selection-container">
+      <a href="web.html" class="globo" target="_blank" rel="noopener">Diseño<br>Web</a>
+      <a href="diseno.html" class="globo" target="_blank" rel="noopener">Diseño<br>Gráfico</a>
+      <a href="certificados.html" class="globo" target="_blank" rel="noopener">Certificados</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <small>copyright © 2025</small>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
