@@ -104,6 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
     openLightbox(full, img.alt, link);
   });
 
+  const designGrid = document.querySelector('.design-grid');
+  designGrid?.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    const full = img.dataset.fullSrc || img.src;
+    const link = img.dataset.link || '';
+    openLightbox(full, img.alt, link);
+  });
+
 
   lightboxClose?.addEventListener('click', closeLightbox);
   lightbox?.addEventListener('click', (e) => {

@@ -245,6 +245,10 @@ main {
   box-shadow: var(--shadow);
 }
 
+.design-grid img {
+  cursor: pointer;
+}
+
 /* Proyectos Notas (Wordpress, etc) */
 .project-note {
   margin-top: 40px;
