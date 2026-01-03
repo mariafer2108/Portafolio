@@ -353,6 +353,12 @@ main {
   color: var(--accent);
 }
 
+.certificate-icon img {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
 .certificate-title {
   font-weight: 600;
   font-size: 1.1rem;
