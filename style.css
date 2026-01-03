@@ -44,6 +44,26 @@ body.home-page {
   color: #5B2C96;
 }
 
+.home-page .social-link {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(91, 44, 150, 0.2);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.home-page .social-left { background: #0A66C2; }
+.home-page .social-right { background: #24292e; }
+.home-page .social-link svg { display: block; }
+.home-page .social-link:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 36px rgba(91, 44, 150, 0.28); }
+@media (max-width: 768px) {
+  .home-page .social-link { width: 52px; height: 52px; border-width: 5px; }
+}
+
 body.home-page .site-header,
 body.home-page .site-footer {
   display: none; /* Hide standard header/footer on splash page if requested, or keep them? 
@@ -60,6 +80,19 @@ body.home-page .site-footer {
   padding: 20px;
 }
 
+.social-profile {
+  display: grid;
+  grid-template-columns: 64px auto 64px;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .social-profile {
+    grid-template-columns: 52px auto 52px;
+    gap: 8px;
+  }
+}
+
 .splash-content {
   text-align: center;
   max-width: 800px;
@@ -67,6 +100,11 @@ body.home-page .site-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.click-note {
+  color: var(--text-2);
+  font-weight: 600;
 }
 
 .profile-img {
@@ -299,6 +337,15 @@ main {
   transform: translateY(-5px);
   box-shadow: var(--shadow);
   border-color: var(--accent-2);
+}
+
+.card#certificados .project-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 64px 36px;
+}
+
+.card#certificados {
+  margin-top: 80px;
 }
 
 .certificate-icon {
